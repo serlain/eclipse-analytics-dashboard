@@ -287,13 +287,16 @@ function Dashboard() {
               Cuenta regresiva
             </div>
             <div className="text-display text-2xl text-primary text-mono mt-1">
-              {String(d).padStart(2, "0")}d : {String(h).padStart(2, "0")}h :{" "}
-              {String(m).padStart(2, "0")}m : {String(s).padStart(2, "0")}s
+              {ready
+                ? `${String(d).padStart(2, "0")}d : ${String(h).padStart(2, "0")}h : ${String(m).padStart(2, "0")}m : ${String(s).padStart(2, "0")}s`
+                : "—d : —h : —m : —s"}
             </div>
             <div className="mt-1 flex items-center justify-between">
               <LiveDot />
               <span className="text-mono text-[10px] text-muted-foreground">
-                {lastUpdate ? new Date(lastUpdate).toLocaleTimeString("es-MX") : "—"}
+                {lastUpdate
+                  ? new Date(lastUpdate).toLocaleTimeString("es-MX", { hour12: false })
+                  : "—"}
               </span>
             </div>
           </div>

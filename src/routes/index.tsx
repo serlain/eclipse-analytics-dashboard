@@ -60,6 +60,7 @@ function toPoints(feeds: Feed[] | undefined, field: string) {
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
+          hour12: false,
         }),
         value: isNaN(v) ? null : v,
       };
@@ -73,18 +74,20 @@ function fmt(n: number | null | undefined, digits = 2) {
 }
 
 function useCountdown(target: Date) {
-  const [now, setNow] = useState(() => Date.now());
+  const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const diff = Math.max(0, target.getTime() - now);
+  const diff = now == null ? 0 : Math.max(0, target.getTime() - now);
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
   const m = Math.floor((diff % 3600000) / 60000);
   const s = Math.floor((diff % 60000) / 1000);
-  return { d, h, m, s };
+  return { d, h, m, s, ready: now != null };
 }
+
 
 // ---------- Data hook ----------
 function useChannel(url: string) {
@@ -249,7 +252,7 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
 function Dashboard() {
   const env = useChannel(ENV_URL);
   const bio = useChannel(BIO_URL);
-  const { d, h, m, s } = useCountdown(ECLIPSE_DATE);
+  const { d, h, m, s, ready } = useCountdown(ECLIPSE_DATE);
 
   const seriesData = useMemo(() => {
     return SERIES.map((s) => {
@@ -284,13 +287,16 @@ function Dashboard() {
               Cuenta regresiva
             </div>
             <div className="text-display text-2xl text-primary text-mono mt-1">
-              {String(d).padStart(2, "0")}d : {String(h).padStart(2, "0")}h :{" "}
-              {String(m).padStart(2, "0")}m : {String(s).padStart(2, "0")}s
+              {ready
+                ? `${String(d).padStart(2, "0")}d : ${String(h).padStart(2, "0")}h : ${String(m).padStart(2, "0")}m : ${String(s).padStart(2, "0")}s`
+                : "—d : —h : —m : —s"}
             </div>
             <div className="mt-1 flex items-center justify-between">
               <LiveDot />
               <span className="text-mono text-[10px] text-muted-foreground">
-                {lastUpdate ? new Date(lastUpdate).toLocaleTimeString("es-MX") : "—"}
+                {lastUpdate
+                  ? new Date(lastUpdate).toLocaleTimeString("es-MX", { hour12: false })
+                  : "—"}
               </span>
             </div>
           </div>

@@ -60,6 +60,7 @@ function toPoints(feeds: Feed[] | undefined, field: string) {
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
+          hour12: false,
         }),
         value: isNaN(v) ? null : v,
       };

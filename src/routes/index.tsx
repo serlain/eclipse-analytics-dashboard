@@ -252,7 +252,7 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
 function Dashboard() {
   const env = useChannel(ENV_URL);
   const bio = useChannel(BIO_URL);
-  const { d, h, m, s } = useCountdown(ECLIPSE_DATE);
+  const { d, h, m, s, ready } = useCountdown(ECLIPSE_DATE);
 
   const seriesData = useMemo(() => {
     return SERIES.map((s) => {

@@ -269,7 +269,7 @@ function Dashboard() {
         <header className="mb-8 flex flex-wrap items-end justify-between gap-6 border-b border-border pb-6">
           <div>
             <div className="text-mono text-[10px] uppercase tracking-[0.3em] text-primary">
-              Observatorio · Proyecto Eclipse MMXXVI
+              Proyecto Medición Biopotencial en Plantas y Personas ante el Eclipse Solar
             </div>
             <h1 className="text-display text-4xl md:text-5xl mt-2 text-foreground">
               Eclipse Solar del 12 de Agosto, 2026

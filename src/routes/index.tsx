@@ -218,9 +218,11 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
               tick={{ fill: "oklch(0.68 0.03 90)", fontSize: 10, fontFamily: "JetBrains Mono" }}
               axisLine={{ stroke: "oklch(1 0 0 / 0.1)" }}
               tickLine={false}
-              width={44}
+              width={56}
               domain={["auto", "auto"]}
+              tickFormatter={(v: number) => fmt(v, 1)}
             />
+
             <Tooltip
               contentStyle={{
                 background: "oklch(0.18 0.02 260 / 0.95)",

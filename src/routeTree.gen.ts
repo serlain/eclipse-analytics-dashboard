@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MedicionesRouteImport } from './routes/mediciones'
+import { Route as EclipseRouteImport } from './routes/eclipse'
 import { Route as IndexRouteImport } from './routes/index'
 
 const MedicionesRoute = MedicionesRouteImport.update({
   id: '/mediciones',
   path: '/mediciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EclipseRoute = EclipseRouteImport.update({
+  id: '/eclipse',
+  path: '/eclipse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/eclipse': typeof EclipseRoute
   '/mediciones': typeof MedicionesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/eclipse': typeof EclipseRoute
   '/mediciones': typeof MedicionesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/eclipse': typeof EclipseRoute
   '/mediciones': typeof MedicionesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mediciones'
+  fullPaths: '/' | '/eclipse' | '/mediciones'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mediciones'
-  id: '__root__' | '/' | '/mediciones'
+  to: '/' | '/eclipse' | '/mediciones'
+  id: '__root__' | '/' | '/eclipse' | '/mediciones'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EclipseRoute: typeof EclipseRoute
   MedicionesRoute: typeof MedicionesRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/mediciones'
       fullPath: '/mediciones'
       preLoaderRoute: typeof MedicionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eclipse': {
+      id: '/eclipse'
+      path: '/eclipse'
+      fullPath: '/eclipse'
+      preLoaderRoute: typeof EclipseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EclipseRoute: EclipseRoute,
   MedicionesRoute: MedicionesRoute,
 }
 export const routeTree = rootRouteImport

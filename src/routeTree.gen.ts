@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as MedicionesRouteImport } from './routes/mediciones'
 import { Route as ExperienciaRouteImport } from './routes/experiencia'
 import { Route as EclipseRouteImport } from './routes/eclipse'
+import { Route as DispositivoRouteImport } from './routes/dispositivo'
 import { Route as AntecedentesRouteImport } from './routes/antecedentes'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const EclipseRoute = EclipseRouteImport.update({
   path: '/eclipse',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DispositivoRoute = DispositivoRouteImport.update({
+  id: '/dispositivo',
+  path: '/dispositivo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AntecedentesRoute = AntecedentesRouteImport.update({
   id: '/antecedentes',
   path: '/antecedentes',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/antecedentes': typeof AntecedentesRoute
+  '/dispositivo': typeof DispositivoRoute
   '/eclipse': typeof EclipseRoute
   '/experiencia': typeof ExperienciaRoute
   '/mediciones': typeof MedicionesRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/antecedentes': typeof AntecedentesRoute
+  '/dispositivo': typeof DispositivoRoute
   '/eclipse': typeof EclipseRoute
   '/experiencia': typeof ExperienciaRoute
   '/mediciones': typeof MedicionesRoute
@@ -59,19 +67,33 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/antecedentes': typeof AntecedentesRoute
+  '/dispositivo': typeof DispositivoRoute
   '/eclipse': typeof EclipseRoute
   '/experiencia': typeof ExperienciaRoute
   '/mediciones': typeof MedicionesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/antecedentes' | '/eclipse' | '/experiencia' | '/mediciones'
+  fullPaths:
+    | '/'
+    | '/antecedentes'
+    | '/dispositivo'
+    | '/eclipse'
+    | '/experiencia'
+    | '/mediciones'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/antecedentes' | '/eclipse' | '/experiencia' | '/mediciones'
+  to:
+    | '/'
+    | '/antecedentes'
+    | '/dispositivo'
+    | '/eclipse'
+    | '/experiencia'
+    | '/mediciones'
   id:
     | '__root__'
     | '/'
     | '/antecedentes'
+    | '/dispositivo'
     | '/eclipse'
     | '/experiencia'
     | '/mediciones'
@@ -80,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AntecedentesRoute: typeof AntecedentesRoute
+  DispositivoRoute: typeof DispositivoRoute
   EclipseRoute: typeof EclipseRoute
   ExperienciaRoute: typeof ExperienciaRoute
   MedicionesRoute: typeof MedicionesRoute
@@ -108,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EclipseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dispositivo': {
+      id: '/dispositivo'
+      path: '/dispositivo'
+      fullPath: '/dispositivo'
+      preLoaderRoute: typeof DispositivoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/antecedentes': {
       id: '/antecedentes'
       path: '/antecedentes'
@@ -128,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AntecedentesRoute: AntecedentesRoute,
+  DispositivoRoute: DispositivoRoute,
   EclipseRoute: EclipseRoute,
   ExperienciaRoute: ExperienciaRoute,
   MedicionesRoute: MedicionesRoute,

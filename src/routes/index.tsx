@@ -199,7 +199,7 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
       </div>
       <div className="h-40">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={points} margin={{ top: 4, right: 6, left: -18, bottom: 0 }}>
+          <AreaChart data={points} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={series.color} stopOpacity={0.45} />
@@ -218,9 +218,11 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
               tick={{ fill: "oklch(0.68 0.03 90)", fontSize: 10, fontFamily: "JetBrains Mono" }}
               axisLine={{ stroke: "oklch(1 0 0 / 0.1)" }}
               tickLine={false}
-              width={44}
+              width={56}
               domain={["auto", "auto"]}
+              tickFormatter={(v: number) => fmt(v, 1)}
             />
+
             <Tooltip
               contentStyle={{
                 background: "oklch(0.18 0.02 260 / 0.95)",

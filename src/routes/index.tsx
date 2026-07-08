@@ -41,10 +41,10 @@ const SERIES: SeriesDef[] = [
   { key: "temp",   field: "field1", label: "Temperatura",        unit: "°C",   color: "var(--color-chart-1)", source: "env" },
   { key: "hum",    field: "field2", label: "Humedad Ambiente",   unit: "%",    color: "var(--color-chart-2)", source: "env" },
   { key: "lux",    field: "field4", label: "Luminosidad",        unit: "lx",   color: "var(--color-chart-3)", source: "env" },
-  { key: "bio1",   field: "field1", label: "Biopotencial I",     unit: "mV",   color: "var(--color-chart-4)", source: "bio" },
-  { key: "bio2",   field: "field2", label: "Biopotencial II",    unit: "mV",   color: "var(--color-chart-5)", source: "bio" },
-  { key: "bio3",   field: "field3", label: "Biopotencial III",   unit: "mV",   color: "var(--color-chart-6)", source: "bio" },
-  { key: "bio4",   field: "field4", label: "Biopotencial IV",    unit: "mV",   color: "var(--color-chart-7)", source: "bio" },
+  { key: "bio1",   field: "field1", label: "Biopotencial Planta 1",   unit: "mV",   color: "var(--color-chart-4)", source: "bio" },
+  { key: "bio2",   field: "field2", label: "Biopotencial Planta 2",   unit: "mV",   color: "var(--color-chart-5)", source: "bio" },
+  { key: "bio3",   field: "field3", label: "Biopotencial Referencia", unit: "mV",   color: "var(--color-chart-6)", source: "bio" },
+  { key: "bio4",   field: "field4", label: "Biopotencial Humano",     unit: "mV",   color: "var(--color-chart-7)", source: "bio" },
 ];
 
 // ---------- Helpers ----------

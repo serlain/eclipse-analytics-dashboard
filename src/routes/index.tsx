@@ -199,7 +199,7 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
       </div>
       <div className="h-40">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={points} margin={{ top: 4, right: 6, left: -18, bottom: 0 }}>
+          <AreaChart data={points} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={series.color} stopOpacity={0.45} />

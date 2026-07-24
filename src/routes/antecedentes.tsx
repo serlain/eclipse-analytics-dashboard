@@ -25,11 +25,9 @@ function AntecedentesPage() {
           estímulos ambientales como luz, temperatura y estrés mecánico.
         </p>
       </Section>
-      <Section title="Efectos biológicos de los eclipses">
+      <Section title="Sierra Figueredo et al. (1995)">
         <p>
-          Estudios de campo han reportado alteraciones conductuales en animales,
-          cambios en actividad estomática en plantas y variaciones micro-climáticas
-          durante la fase de totalidad de eclipses solares.
+          Pablo Sierra Figueredo junto con sus colegas, realizaron el experimento en el año 1995, en La Habana, Cuba, con el que se pudo comprobar que el paso de la Luna entre el Sol y la Tierra (alineación de los tres cuerpos), provoca una caída gradual del biopotencial en una planta de banana. Tanto el comienzo de la caída como la recuperación del biopotencial ocurrió gradualmente, no respondiendo, en el tiempo, con la interrupción de la luz solar por parte de la Luna, que por demás, fue en ese caso un eclipse parcial del orden de un 20% de la superficie del disco solar cubierta por la Luna. De manera que atribuimos la alteración del biopotencial a la modificación del entorno gravitacional (efecto de marea) al ir alineándose los tres cuerpos de forma gradual y no a la modificación del flujo de luz solar, comparable en este caso al tránsito de alguna nube frente al disco solar.
         </p>
       </Section>
       <Section title="Antecedentes locales">

@@ -121,11 +121,26 @@ function AntecedentesPage() {
           </div>
         </div>
       </Section>
-      <Section title="Antecedentes locales">
-        <p>
-          Este proyecto se apoya en experiencias previas de instrumentación de bajo
-          costo y en la infraestructura de telemetría abierta ThingSpeak para el
-          registro sincronizado de múltiples variables.
+      <Section title="'Un colectivo viviente': un estudio muestra que los árboles sincronizan señales eléctricas durante un eclipse solar">
+        <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border/40 bg-black/20">
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src="https://www.youtube-nocookie.com/embed/UnVWfFRlz5w?start=37"
+            title="'Un colectivo viviente': un estudio muestra que los árboles sincronizan señales eléctricas durante un eclipse solar"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+        <p className="text-sm text-muted-foreground mt-2">
+          Ver en YouTube:{" "}
+          <a
+            href="https://www.youtube.com/watch?v=UnVWfFRlz5w&t=37s"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline hover:text-primary/80 transition-colors"
+          >
+            https://www.youtube.com/watch?v=UnVWfFRlz5w&t=37s
+          </a>
         </p>
       </Section>
     </PageShell>

@@ -41,6 +41,30 @@ function AntecedentesPage() {
           </figcaption>
         </figure>
       </Section>
+      <Section title="Resumen de Estudios sobre Eclipses Solares y Biopotencial de Plantas">
+        <ol className="list-decimal space-y-4 pl-5 marker:text-foreground/70">
+          <li>
+            <strong>Cambios en el biopotencial.</strong> Estudios en robles, pinos y cactus (EE. UU., Brasil, India) han registrado variaciones de ±30-80 mV durante eclipses solares. Estas variaciones se atribuyen a cambios en fotoperiodo, flujo de agua y fotosíntesis. El biopotencial cae durante el eclipse y se recupera después.
+          </li>
+          <li>
+            <strong>Alteraciones en la fotosíntesis y los estomas.</strong> Durante eclipses solares, la actividad fotosintética disminuye rápidamente. También ocurre un cierre parcial de estomas, lo cual afecta la transpiración y la presión de turgencia.
+          </li>
+          <li>
+            <strong>Respuestas bioeléctricas registradas.</strong> Se han utilizado electrodos en tallos, hojas y raíces con amplificadores de señal. Se detectan ondas eléctricas similares a las provocadas por estrés ambiental o mecánico.
+          </li>
+          <li>
+            <strong>Ejemplos destacados.</strong> Eclipse total de 2017 (EE. UU.): cambios en álamos y cerezos. Eclipse de 2006 (India): alteraciones en el ritmo eléctrico circadiano en leguminosas.
+          </li>
+          <li>
+            <strong>Referencias clave.</strong>
+            <ul className="mt-2 list-disc space-y-1 pl-5 marker:text-foreground/70">
+              <li>Cifra, M. et al. Electrobiology of plants under natural perturbations, <em>Biophysical Journal</em>, 2012.</li>
+              <li>Volkov, A. G. et al. Green plants as electronic devices: signals from eclipses, <em>Plant Signaling & Behavior</em>, 2010.</li>
+              <li>Ghosh, P. et al. Changes in electrical activity of plants during solar eclipses, <em>Current Science</em>, 2006.</li>
+            </ul>
+          </li>
+        </ol>
+      </Section>
       <Section title="Antecedentes locales">
         <p>
           Este proyecto se apoya en experiencias previas de instrumentación de bajo

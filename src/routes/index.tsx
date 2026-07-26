@@ -76,6 +76,24 @@ function HomePage() {
             </div>
           ))}
         </div>
+
+        <div className="mt-12 rounded-lg border border-primary/30 bg-primary/10 p-6 md:p-8">
+          <h2 className="text-display text-lg text-primary">Importante</h2>
+          <p className="mt-3 text-sm leading-relaxed text-foreground/90">
+            En la página web del Instituto Geográfico Nacional ({" "}
+            <a
+              href="https://eclipses.ign.es/home.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline hover:text-primary/80 transition-colors"
+            >
+              https://eclipses.ign.es/home.html
+            </a>
+            ), consulta toda la información del trío de eclipses visibles en España y no te olvides de consultar el apartado de{" "}
+            <strong>“CÓMO OBSERVAR LOS ECLIPSES”</strong>{" "}
+            para una adecuada protección de tus ojos.
+          </p>
+        </div>
       </div>
     </div>
   );

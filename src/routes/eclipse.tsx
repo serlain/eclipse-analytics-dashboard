@@ -40,75 +40,67 @@ function EclipsePage() {
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-foreground">
-                UN ECLIPSE TOTAL ES UNA CASUALIDAD EXTRAORDINARIA.
+                El milagro geométrico de los eclipses solares
               </h3>
+              <h4 className="mt-3 text-lg font-semibold text-foreground">
+                Una coincidencia de proporciones perfectas
+              </h4>
               <p className="mt-3 leading-relaxed">
-                La Luna es aproximadamente 400 veces más pequeña que el Sol, pero también está unas 400 veces más cerca de la Tierra. 
-                Esa coincidencia hace que ambos parezcan tener exactamente el mismo tamaño en nuestro cielo. Gracias a esto, la Luna puede cubrir el disco solar con una precisión tan exacta que convierte al eclipse total en uno de los fenómenos más espectaculares del Sistema Solar.
+                Que la Tierra sea testigo de eclipses solares totales es el resultado de un capricho matemático fascinante. Aunque el Sol posee un diámetro unas 400 veces mayor que el de nuestro satélite, la Luna se sitúa 400 veces más próxima a nosotros.
+              </p>
+              <p className="mt-3 leading-relaxed">
+                Esta simetría provoca que ambos astros exhiban un tamaño visual idéntico desde la superficie terrestre. Es esta alineación matemática la que permite a la Luna ocultar por completo la estrella central de nuestro sistema, regalándonos uno de los espectáculos astronómicos más sobrecogedores del cosmos.
               </p>
 
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div className="rounded-lg border border-border/40 bg-muted/10 p-4">
-                  <span className="text-mono text-xs uppercase tracking-wider text-primary">Tamaño de la Luna</span>
-                  <p className="mt-1 text-sm font-semibold text-foreground">400 veces más pequeña que el Sol.</p>
+                  <span className="text-mono text-xs uppercase tracking-wider text-primary">Diámetro del Sol</span>
+                  <p className="mt-1 text-sm font-semibold text-foreground">400 veces mayor que el de la Luna.</p>
                 </div>
                 <div className="rounded-lg border border-border/40 bg-muted/10 p-4">
-                  <span className="text-mono text-xs uppercase tracking-wider text-primary">Distancia de la Luna</span>
-                  <p className="mt-1 text-sm font-semibold text-foreground">400 veces más cerca de la Tierra que del Sol.</p>
+                  <span className="text-mono text-xs uppercase tracking-wider text-primary">Distancia a la Luna</span>
+                  <p className="mt-1 text-sm font-semibold text-foreground">400 veces más próxima que la del Sol.</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-lg border border-primary/30 bg-primary/5 p-5">
-              <span className="text-mono text-xs font-bold uppercase tracking-widest text-primary">💡 ¿Sabías que? · SAROS</span>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/90">
-                Es el ciclo de 18 años, 11 días y 8 horas utilizado para predecir eclipses desde la antigüedad. Este término fue introducido en 1686 por el célebre astrónomo Edmund Halley.
+            <div>
+              <h3 className="text-xl font-semibold text-foreground">
+                El orden detrás del caos: La regularidad astronómica
+              </h3>
+              <p className="mt-3 leading-relaxed">
+                Los eclipses no suceden de manera aleatoria. Cada año, la Tierra experimenta entre dos y cinco eventos solares, aunque la mayoría pasa desapercibida por ser parciales o proyectar su sombra sobre aguas oceánicas. A nivel global, un eclipse total se registra aproximadamente cada 18 meses.
+              </p>
+              <p className="mt-3 leading-relaxed">
+                Este patrón recurrente responde a la serie Saros. Transcurridos 223 meses lunares (el equivalente al ciclo de 18 años y las horas adicionales), el Sol, la Tierra y la Luna regresan a una configuración casi idéntica, replicando un evento con características muy parecidas al anterior.
+              </p>
+              <p className="mt-3 leading-relaxed">
+                Sin embargo, el factor decisivo reside en esas 8 horas adicionales: durante ese lapso, el planeta rota sobre su propio eje, provocando que el siguiente eclipse se desplace en la superficie terrestre unos 120 grados hacia el oeste.
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-foreground">
-                LOS ECLIPSES NO OCURREN AL AZAR
+                Una alineación sumamente inusual
               </h3>
               <p className="mt-3 leading-relaxed">
-                En la Tierra se producen entre 2 y 5 eclipses solares al año. Pero muchos son parciales, algunos ocurren sobre océanos y solo unos pocos son totales visibles desde zonas habitadas. Los eclipses totales solares ocurren aproximadamente cada 18 meses en algún lugar del planeta.
+                Si la Luna orbita la Tierra constantemente, ¿por qué no hay eclipses todos los meses? La respuesta está en la inclinación de la órbita lunar respecto al plano terrestre. La mayoría del tiempo, la sombra proyectada por nuestro satélite pasa por encima o por debajo de la Tierra.
               </p>
               <p className="mt-3 leading-relaxed">
-                Ese ciclo se conoce como serie Saros. Cada 18 años, 11 días y 8 horas, o 223 meses sinódicos, las posiciones de Sol, Tierra y Luna vuelven a alinearse casi exactamente, generando un eclipse muy similar al anterior.
-              </p>
-              <p className="mt-3 leading-relaxed">
-                Pero hay un pequeño detalle: esas ocho horas extra hacen que la Tierra haya girado un poco más. Por eso, cada nuevo eclipse aparece desplazado unos 120° en longitud sobre otra región del planeta.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-foreground">
-                LA COREOGRAFÍA QUE CASI NUNCA OCURRE.
-              </h3>
-              <p className="mt-3 leading-relaxed">
-                Pero debido a que la órbita de la Luna está ligeramente inclinada, la mayoría de las veces las sombras no llegan a coincidir. Por eso los eclipses totales son tan raros y la franja desde la que pueden observarse suele medir apenas unos cientos de kilómetros.
-              </p>
-              <p className="mt-3 leading-relaxed">
-                Un eclipse total tiene lugar en algún lugar de la Tierra aproximadamente cada 18 meses, pero desde una misma ciudad pueden pasar siglos antes de volver a contemplarlo.
+                Para que se produzca la totalidad, se requiere un encaje astronómico perfecto. Como resultado, la franja terrestre desde la que se aprecia la fase total es extremadamente estrecha —apenas un corredor de unos pocos cientos de kilómetros—. Por esta razón, aunque sucedan cada año y medio en algún punto del globo, presenciar un eclipse total desde una misma localización es un acontecimiento que solo ocurre una vez cada varios siglos.
               </p>
             </div>
 
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-5 space-y-2">
-              <span className="text-mono text-xs font-bold uppercase tracking-widest text-primary">💡 ¿Sabías que?</span>
+              <span className="text-mono text-xs font-bold uppercase tracking-widest text-primary">💡 Dato astronómico</span>
               <h4 className="text-lg font-semibold text-foreground">
-                EL FIN DE LA DANZA CÓSMICA.
+                La fecha de caducidad de los eclipses
               </h4>
               <p className="text-sm leading-relaxed text-foreground/90">
-                La Luna se aleja lentamente de la Tierra a un ritmo de unos 3,8 centímetros al año. Aunque esta distancia aumenta de forma casi imperceptible a escala humana, sus efectos serán importantes a muy largo plazo.
+                Nuestro satélite se distorsiona en su trayectoria y se distorsiona distanciándose a una velocidad constante de 3,8 centímetros por año.
               </p>
               <p className="text-sm leading-relaxed text-foreground/90">
-                Dentro de cientos de millones de años, la Luna estará demasiado lejos para cubrir completamente el disco solar. Los eclipses totales dejarán de producirse y solo podrán observarse eclipses parciales o anulares.
-              </p>
-              <p className="text-sm leading-relaxed text-foreground/90">
-                Este cambio forma parte de la evolución natural del sistema Tierra-Luna y nos recuerda que incluso los fenómenos astronómicos más familiares pueden transformarse con el paso del tiempo.
-              </p>
-              <p className="text-sm leading-relaxed text-foreground/90">
-                La coreografía celeste que da lugar a los eclipses continúa evolucionando, aunque lo hace a una escala temporal mucho mayor que la de la historia humana.
+                A escala humana resulta imperceptible, pero dentro de cientos de millones de años la distancia será tal que la Luna se verá demasiado pequeña como para tapar el Sol por completo. En ese futuro distante, la Tierra dirá adiós a los eclipses totales para presenciar únicamente eventos anulares y parciales.
               </p>
             </div>
           </div>

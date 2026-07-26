@@ -36,6 +36,17 @@ function ExperienciaPage() {
           Biohabitabilidad.
         </p>
       </Section>
+      <figure className="overflow-hidden rounded-lg border border-border/40 bg-black/20">
+        <img
+          src={estacionCampo.url}
+          alt="Estación de medición de biopotencial desplegada en campo con laptop, instrumentación y plantas de bananera"
+          className="w-full object-cover"
+          loading="lazy"
+        />
+        <figcaption className="border-t border-border/40 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
+          Estación de medición desplegada en campo: instrumentación, laptop y plantas de bananera instrumentadas.
+        </figcaption>
+      </figure>
       <Section title="Metodología">
         <p>
           Mediante una estación electrónica desarrollada exclusivamente para este

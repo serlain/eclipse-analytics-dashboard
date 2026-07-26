@@ -118,8 +118,43 @@ function EclipsePage() {
         <p>
           La banda de totalidad recorrerá zonas de Groenlandia, Islandia y el norte
           de la Península Ibérica. En el resto del territorio será visible como
-          eclipse parcial de alta magnitud.
+          eclipse total y parcial de alta magnitud. La Fundación GEA-Reviure en Benicarló es un lugar excepcional al estar ubicada muy cerca del centro de la franja de sombra del eclipse total.
         </p>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          <figure className="overflow-hidden rounded-xl border border-border/50 bg-black/30 p-2 shadow-lg transition-transform hover:scale-[1.01]">
+            <img
+              src="/mapa-eclipses-espana.jpg"
+              alt="Mapa de eclipses solares en la Península Ibérica (2026, 2027, 2028)"
+              className="h-56 w-full rounded-lg object-cover object-top"
+            />
+            <figcaption className="mt-2 px-2 py-1.5 text-xs text-muted-foreground leading-tight">
+              <strong>Tríptico de eclipses en España:</strong> Eclipse total de 2026 (Norte-Levante), eclipse total de 2027 (Sur) y eclipse anular de 2028.
+            </figcaption>
+          </figure>
+
+          <figure className="overflow-hidden rounded-xl border border-border/50 bg-black/30 p-2 shadow-lg transition-transform hover:scale-[1.01]">
+            <img
+              src="/trayectoria-eclipse-2026-espana.jpg"
+              alt="Franja de totalidad del eclipse solar del 12 de agosto de 2026"
+              className="h-56 w-full rounded-lg object-cover object-center"
+            />
+            <figcaption className="mt-2 px-2 py-1.5 text-xs text-muted-foreground leading-tight">
+              <strong>Franja de totalidad 2026:</strong> Recorrido de la umbra desde el Cantábrico cruzando la península hasta las Islas Baleares.
+            </figcaption>
+          </figure>
+
+          <figure className="overflow-hidden rounded-xl border border-border/50 bg-black/30 p-2 shadow-lg transition-transform hover:scale-[1.01]">
+            <img
+              src="/detalle-benicarlo-eclipse.jpg"
+              alt="Detalle de la franja del eclipse en el área de Benicarló y Castelló"
+              className="h-56 w-full rounded-lg object-cover object-center"
+            />
+            <figcaption className="mt-2 px-2 py-1.5 text-xs text-muted-foreground leading-tight">
+              <strong>Ubicación de Benicarló:</strong> Posición estratégica de la Fundación GEA-Reviure muy cerca de la línea central de la sombra total.
+            </figcaption>
+          </figure>
+        </div>
       </Section>
       <Section title="Relevancia científica">
         <p>

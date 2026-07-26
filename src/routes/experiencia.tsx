@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Section } from "@/components/PageShell";
 import disenoExperimento from "@/assets/diseno-experimento.png.asset.json";
+import estacionCampo from "@/assets/estacion-campo-experiencia.jpeg.asset.json";
 
 export const Route = createFileRoute("/experiencia")({
   head: () => ({

@@ -25,7 +25,7 @@ function HomePage() {
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
               Estación de monitoreo ambiental y bioeléctrico diseñada para registrar,
               en tiempo real, la respuesta de organismos vivos y del entorno físico
-              durante el eclipse solar del 12 de agosto de 2026.
+              durante el eclipse solar del 12 de agosto de 2026. La Fundación GEA-Reviure en Benicarló va a ser un escenario excepcional al estar ubicada muy cerca del centro de la franja de sombra del eclipse total.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

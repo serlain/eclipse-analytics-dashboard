@@ -80,6 +80,40 @@ function ExperienciaPage() {
           </figcaption>
         </figure>
       </section>
+      <Section title="Otras Experiencias">
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-lg font-semibold text-foreground">
+              Cataluña impulsa una investigación sobre los efectos del eclipse solar en el cuerpo humano
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              <a
+                href="https://elpais.com/ciencia/2026-07-03/cataluna-impulsa-una-investigacion-sobre-los-efectos-del-eclipse-solar-en-el-cuerpo-humano.html?outputType=amp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline hover:text-primary/80 transition-colors"
+              >
+                Leer artículo en El País
+              </a>
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-foreground">
+              Así es el proyecto que ‘escuchará’ el eclipse de Sol: ¿qué se oye cuando se apaga el mundo?
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              <a
+                href="https://elpais.com/ciencia/2026-07-12/asi-es-el-proyecto-que-escuchara-el-eclipse-de-sol-que-se-oye-cuando-se-apaga-el-mundo.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline hover:text-primary/80 transition-colors"
+              >
+                Leer artículo en El País
+              </a>
+            </p>
+          </div>
+        </div>
+      </Section>
     </PageShell>
   );
 }

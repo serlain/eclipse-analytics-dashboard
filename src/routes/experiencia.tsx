@@ -57,7 +57,7 @@ function ExperienciaPage() {
           un procesamiento y estudio posterior de dichos datos y obtener unas
           conclusiones acerca de la influencia de este fenómeno sobre el biopotencial
           de los seres vivos. Se obtendrán los datos antes, durante y un día posterior
-          al eclipse, de manera de tener dos ventanas comparativas al menos.
+          al eclipse, de esta manera se dispondrá de dos ventanas comparativas al menos.
         </p>
       </Section>
       <Section title="Sujetos de estudio">

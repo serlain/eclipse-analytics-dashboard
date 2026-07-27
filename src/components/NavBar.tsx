@@ -7,6 +7,7 @@ const TABS = [
   { to: "/antecedentes", label: "Antecedentes" },
   { to: "/dispositivo", label: "Dispositivo" },
   { to: "/mediciones", label: "Mediciones" },
+  { to: "/exportar", label: "Exportar Datos" },
 ] as const;
 
 export function NavBar() {

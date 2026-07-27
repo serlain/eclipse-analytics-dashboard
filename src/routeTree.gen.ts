@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MedicionesRouteImport } from './routes/mediciones'
+import { Route as ExportarRouteImport } from './routes/exportar'
 import { Route as ExperienciaRouteImport } from './routes/experiencia'
 import { Route as EclipseRouteImport } from './routes/eclipse'
 import { Route as DispositivoRouteImport } from './routes/dispositivo'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const MedicionesRoute = MedicionesRouteImport.update({
   id: '/mediciones',
   path: '/mediciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExportarRoute = ExportarRouteImport.update({
+  id: '/exportar',
+  path: '/exportar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienciaRoute = ExperienciaRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/dispositivo': typeof DispositivoRoute
   '/eclipse': typeof EclipseRoute
   '/experiencia': typeof ExperienciaRoute
+  '/exportar': typeof ExportarRoute
   '/mediciones': typeof MedicionesRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/dispositivo': typeof DispositivoRoute
   '/eclipse': typeof EclipseRoute
   '/experiencia': typeof ExperienciaRoute
+  '/exportar': typeof ExportarRoute
   '/mediciones': typeof MedicionesRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/dispositivo': typeof DispositivoRoute
   '/eclipse': typeof EclipseRoute
   '/experiencia': typeof ExperienciaRoute
+  '/exportar': typeof ExportarRoute
   '/mediciones': typeof MedicionesRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/dispositivo'
     | '/eclipse'
     | '/experiencia'
+    | '/exportar'
     | '/mediciones'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/dispositivo'
     | '/eclipse'
     | '/experiencia'
+    | '/exportar'
     | '/mediciones'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/dispositivo'
     | '/eclipse'
     | '/experiencia'
+    | '/exportar'
     | '/mediciones'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   DispositivoRoute: typeof DispositivoRoute
   EclipseRoute: typeof EclipseRoute
   ExperienciaRoute: typeof ExperienciaRoute
+  ExportarRoute: typeof ExportarRoute
   MedicionesRoute: typeof MedicionesRoute
 }
 
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/mediciones'
       fullPath: '/mediciones'
       preLoaderRoute: typeof MedicionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exportar': {
+      id: '/exportar'
+      path: '/exportar'
+      fullPath: '/exportar'
+      preLoaderRoute: typeof ExportarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experiencia': {
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   DispositivoRoute: DispositivoRoute,
   EclipseRoute: EclipseRoute,
   ExperienciaRoute: ExperienciaRoute,
+  ExportarRoute: ExportarRoute,
   MedicionesRoute: MedicionesRoute,
 }
 export const routeTree = rootRouteImport

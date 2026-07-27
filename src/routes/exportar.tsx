@@ -1,5 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { PageShell } from "@/components/PageShell";
 
 export const Route = createFileRoute("/exportar")({
@@ -25,10 +35,28 @@ export const Route = createFileRoute("/exportar")({
 });
 
 const PASSWORD = "GEA2026";
-const ENV_BASE =
+const ENV_CSV =
   "https://api.thingspeak.com/channels/3386467/feeds.csv?api_key=JH8OO0QI872QHLAU";
-const BIO_BASE =
+const BIO_CSV =
   "https://api.thingspeak.com/channels/3395551/feeds.csv?api_key=GYOL2ONHMGBYOIQJ";
+const ENV_JSON =
+  "https://api.thingspeak.com/channels/3386467/feeds.json?api_key=JH8OO0QI872QHLAU";
+const BIO_JSON =
+  "https://api.thingspeak.com/channels/3395551/feeds.json?api_key=GYOL2ONHMGBYOIQJ";
+
+const ENV_SERIES = [
+  { field: "field1", label: "Temperatura (°C)", color: "hsl(12 90% 60%)" },
+  { field: "field2", label: "Humedad (%)", color: "hsl(200 90% 60%)" },
+  { field: "field4", label: "Luminosidad (lx)", color: "hsl(48 95% 60%)" },
+];
+const BIO_SERIES = [
+  { field: "field1", label: "Planta 1 (mV)", color: "hsl(140 70% 55%)" },
+  { field: "field2", label: "Planta 2 (mV)", color: "hsl(160 70% 50%)" },
+  { field: "field3", label: "Referencia (mV)", color: "hsl(280 60% 65%)" },
+  { field: "field4", label: "Humano (mV)", color: "hsl(340 75% 60%)" },
+];
+
+type Feed = Record<string, string | null> & { created_at: string };
 
 function timestamp() {
   const d = new Date();
@@ -50,11 +78,115 @@ async function downloadCSV(url: string, filename: string) {
   URL.revokeObjectURL(objectUrl);
 }
 
-function buildUrl(base: string, start: string, end: string) {
+function buildUrl(base: string, start: string, end: string, extra?: string) {
   const params: string[] = [];
   if (start) params.push(`start=${encodeURIComponent(`${start} 00:00:00`)}`);
   if (end) params.push(`end=${encodeURIComponent(`${end} 23:59:59`)}`);
+  if (extra) params.push(extra);
   return params.length ? `${base}&${params.join("&")}` : base;
+}
+
+function toChartData(feeds: Feed[], fields: { field: string }[]) {
+  return feeds.map((f) => {
+    const row: Record<string, number | string> = {
+      t: new Date(f.created_at).getTime(),
+      label: new Date(f.created_at).toLocaleString("es-ES", {
+        hour12: false,
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    };
+    for (const { field } of fields) {
+      const v = f[field];
+      row[field] = v == null || v === "" ? NaN : parseFloat(v);
+    }
+    return row;
+  });
+}
+
+function HistoryChart({
+  title,
+  data,
+  series,
+  loading,
+  error,
+}: {
+  title: string;
+  data: Array<Record<string, number | string>>;
+  series: { field: string; label: string; color: string }[];
+  loading: boolean;
+  error: string | null;
+}) {
+  return (
+    <div className="card-academic rounded-lg p-4 md:p-6">
+      <div className="flex items-baseline justify-between">
+        <h3 className="text-display text-lg text-foreground">{title}</h3>
+        <span className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          {loading ? "Cargando…" : `${data.length} puntos`}
+        </span>
+      </div>
+      {error && (
+        <p className="mt-2 text-mono text-xs text-destructive">Error: {error}</p>
+      )}
+      <div className="mt-4 h-72 w-full">
+        {data.length > 0 ? (
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={data} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
+              <defs>
+                {series.map((s) => (
+                  <linearGradient key={s.field} id={`g-${title}-${s.field}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={s.color} stopOpacity={0.45} />
+                    <stop offset="100%" stopColor={s.color} stopOpacity={0} />
+                  </linearGradient>
+                ))}
+              </defs>
+              <CartesianGrid stroke="hsl(var(--border))" strokeDasharray="2 4" opacity={0.35} />
+              <XAxis
+                dataKey="label"
+                stroke="hsl(var(--muted-foreground))"
+                fontSize={10}
+                minTickGap={40}
+              />
+              <YAxis
+                stroke="hsl(var(--muted-foreground))"
+                fontSize={10}
+                width={56}
+                tickFormatter={(v) => (typeof v === "number" ? v.toFixed(1) : String(v))}
+              />
+              <Tooltip
+                contentStyle={{
+                  background: "hsl(var(--popover))",
+                  border: "1px solid hsl(var(--border))",
+                  fontSize: 12,
+                }}
+              />
+              <Legend wrapperStyle={{ fontSize: 11 }} />
+              {series.map((s) => (
+                <Area
+                  key={s.field}
+                  type="monotone"
+                  dataKey={s.field}
+                  name={s.label}
+                  stroke={s.color}
+                  fill={`url(#g-${title}-${s.field})`}
+                  strokeWidth={1.5}
+                  isAnimationActive={false}
+                  connectNulls
+                  dot={false}
+                />
+              ))}
+            </AreaChart>
+          </ResponsiveContainer>
+        ) : (
+          <div className="flex h-full items-center justify-center text-mono text-xs text-muted-foreground">
+            {loading ? "Consultando ThingSpeak…" : "Sin datos. Pulsa «Cargar históricos»."}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 function ExportarDatos() {
@@ -65,6 +197,11 @@ function ExportarDatos() {
   const [downloadErr, setDownloadErr] = useState<string | null>(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  const [envData, setEnvData] = useState<Array<Record<string, number | string>>>([]);
+  const [bioData, setBioData] = useState<Array<Record<string, number | string>>>([]);
+  const [loadingCharts, setLoadingCharts] = useState(false);
+  const [chartsErr, setChartsErr] = useState<string | null>(null);
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -84,7 +221,7 @@ function ExportarDatos() {
     }
     setBusy(kind);
     try {
-      const base = kind === "env" ? ENV_BASE : BIO_BASE;
+      const base = kind === "env" ? ENV_CSV : BIO_CSV;
       const url = buildUrl(base, startDate, endDate);
       const range = startDate || endDate ? `_${startDate || "inicio"}_${endDate || "hoy"}` : "";
       const name =
@@ -96,6 +233,32 @@ function ExportarDatos() {
       setDownloadErr(e instanceof Error ? e.message : "Error de descarga");
     } finally {
       setBusy(null);
+    }
+  }
+
+  async function loadCharts() {
+    setChartsErr(null);
+    if (startDate && endDate && startDate > endDate) {
+      setChartsErr("La fecha de inicio debe ser anterior o igual a la de fin.");
+      return;
+    }
+    setLoadingCharts(true);
+    try {
+      const extra = "results=8000";
+      const [envRes, bioRes] = await Promise.all([
+        fetch(buildUrl(ENV_JSON, startDate, endDate, extra), { cache: "no-store" }),
+        fetch(buildUrl(BIO_JSON, startDate, endDate, extra), { cache: "no-store" }),
+      ]);
+      if (!envRes.ok) throw new Error(`Ambiental HTTP ${envRes.status}`);
+      if (!bioRes.ok) throw new Error(`Biopotenciales HTTP ${bioRes.status}`);
+      const envJson = await envRes.json();
+      const bioJson = await bioRes.json();
+      setEnvData(toChartData(envJson.feeds ?? [], ENV_SERIES));
+      setBioData(toChartData(bioJson.feeds ?? [], BIO_SERIES));
+    } catch (e) {
+      setChartsErr(e instanceof Error ? e.message : "Error al cargar históricos");
+    } finally {
+      setLoadingCharts(false);
     }
   }
 
@@ -139,8 +302,8 @@ function ExportarDatos() {
   return (
     <PageShell
       eyebrow="07 · Exportar Datos"
-      title="Descarga de Históricos"
-      lead="Selecciona opcionalmente un intervalo de fechas y obtén los registros almacenados en ThingSpeak en formato CSV."
+      title="Descarga y Visualización de Históricos"
+      lead="Selecciona opcionalmente un intervalo de fechas para descargar los CSV y visualizar las gráficas históricas de ambos canales."
     >
       <div className="card-academic rounded-lg p-6 mb-4">
         <div className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
@@ -171,7 +334,7 @@ function ExportarDatos() {
           </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground">
-          Si dejas ambas fechas en blanco, se descargará el histórico completo disponible.
+          Si dejas ambas fechas en blanco, se usará el histórico completo disponible (máx. 8000 puntos por canal en las gráficas).
         </p>
         {(startDate || endDate) && (
           <button
@@ -234,6 +397,51 @@ function ExportarDatos() {
           Error al descargar: {downloadErr}
         </div>
       )}
+
+      <div className="mt-10 flex items-center justify-between gap-4">
+        <div>
+          <div className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            Visualización
+          </div>
+          <h2 className="text-display text-2xl text-foreground mt-1">
+            Gráficas históricas
+          </h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Aplica un intervalo de fechas (o déjalo vacío) y pulsa cargar para
+            renderizar las series completas.
+          </p>
+        </div>
+        <button
+          onClick={loadCharts}
+          disabled={loadingCharts}
+          className="shrink-0 rounded-md border border-primary/60 bg-primary/10 px-4 py-2 text-mono text-xs uppercase tracking-[0.22em] text-primary transition-colors hover:bg-primary/20 disabled:opacity-50"
+        >
+          {loadingCharts ? "Cargando…" : "Cargar históricos"}
+        </button>
+      </div>
+
+      {chartsErr && (
+        <div className="mt-3 card-academic rounded-lg p-3 border-destructive/40 text-xs text-mono text-destructive">
+          {chartsErr}
+        </div>
+      )}
+
+      <div className="mt-4 grid gap-4">
+        <HistoryChart
+          title="Variables ambientales"
+          data={envData}
+          series={ENV_SERIES}
+          loading={loadingCharts}
+          error={null}
+        />
+        <HistoryChart
+          title="Biopotenciales"
+          data={bioData}
+          series={BIO_SERIES}
+          loading={loadingCharts}
+          error={null}
+        />
+      </div>
     </PageShell>
   );
 }

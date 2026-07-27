@@ -25,9 +25,9 @@ export const Route = createFileRoute("/exportar")({
 });
 
 const PASSWORD = "GEA2026";
-const ENV_CSV =
+const ENV_BASE =
   "https://api.thingspeak.com/channels/3386467/feeds.csv?api_key=JH8OO0QI872QHLAU";
-const BIO_CSV =
+const BIO_BASE =
   "https://api.thingspeak.com/channels/3395551/feeds.csv?api_key=GYOL2ONHMGBYOIQJ";
 
 function timestamp() {
@@ -50,12 +50,21 @@ async function downloadCSV(url: string, filename: string) {
   URL.revokeObjectURL(objectUrl);
 }
 
+function buildUrl(base: string, start: string, end: string) {
+  const params: string[] = [];
+  if (start) params.push(`start=${encodeURIComponent(`${start} 00:00:00`)}`);
+  if (end) params.push(`end=${encodeURIComponent(`${end} 23:59:59`)}`);
+  return params.length ? `${base}&${params.join("&")}` : base;
+}
+
 function ExportarDatos() {
   const [unlocked, setUnlocked] = useState(false);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
   const [downloadErr, setDownloadErr] = useState<string | null>(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -69,13 +78,19 @@ function ExportarDatos() {
 
   async function handleDownload(kind: "env" | "bio") {
     setDownloadErr(null);
+    if (startDate && endDate && startDate > endDate) {
+      setDownloadErr("La fecha de inicio debe ser anterior o igual a la de fin.");
+      return;
+    }
     setBusy(kind);
     try {
-      const url = kind === "env" ? ENV_CSV : BIO_CSV;
+      const base = kind === "env" ? ENV_BASE : BIO_BASE;
+      const url = buildUrl(base, startDate, endDate);
+      const range = startDate || endDate ? `_${startDate || "inicio"}_${endDate || "hoy"}` : "";
       const name =
         kind === "env"
-          ? `historico-ambiental-${timestamp()}.csv`
-          : `historico-biopotenciales-${timestamp()}.csv`;
+          ? `historico-ambiental${range}-${timestamp()}.csv`
+          : `historico-biopotenciales${range}-${timestamp()}.csv`;
       await downloadCSV(url, name);
     } catch (e) {
       setDownloadErr(e instanceof Error ? e.message : "Error de descarga");
@@ -125,8 +140,53 @@ function ExportarDatos() {
     <PageShell
       eyebrow="07 · Exportar Datos"
       title="Descarga de Históricos"
-      lead="Obtén los registros completos almacenados en ThingSpeak en formato CSV para análisis posterior."
+      lead="Selecciona opcionalmente un intervalo de fechas y obtén los registros almacenados en ThingSpeak en formato CSV."
     >
+      <div className="card-academic rounded-lg p-6 mb-4">
+        <div className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          Intervalo de fechas (opcional)
+        </div>
+        <div className="mt-3 grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Desde
+            </label>
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="mt-1 w-full rounded-md border border-border bg-background/60 px-3 py-2 text-mono text-sm text-foreground outline-none focus:border-primary"
+            />
+          </div>
+          <div>
+            <label className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Hasta
+            </label>
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="mt-1 w-full rounded-md border border-border bg-background/60 px-3 py-2 text-mono text-sm text-foreground outline-none focus:border-primary"
+            />
+          </div>
+        </div>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Si dejas ambas fechas en blanco, se descargará el histórico completo disponible.
+        </p>
+        {(startDate || endDate) && (
+          <button
+            type="button"
+            onClick={() => {
+              setStartDate("");
+              setEndDate("");
+            }}
+            className="mt-2 text-mono text-[10px] uppercase tracking-[0.22em] text-primary hover:underline"
+          >
+            Limpiar intervalo
+          </button>
+        )}
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="card-academic rounded-lg p-6">
           <div className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">

@@ -223,18 +223,38 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
               }}
             />
             <YAxis
-              tick={{ fill: "oklch(0.68 0.03 90)", fontSize: 10, fontFamily: "JetBrains Mono" }}
-              axisLine={{ stroke: "oklch(1 0 0 / 0.25)" }}
-              tickLine={{ stroke: "oklch(1 0 0 / 0.14)" }}
-              width={56}
+              yAxisId="left"
+              orientation="left"
+              tick={{ fill: "oklch(0.90 0.02 90)", fontSize: 11, fontFamily: "JetBrains Mono" }}
+              axisLine={{ stroke: "oklch(1 0 0 / 0.35)" }}
+              tickLine={{ stroke: "oklch(1 0 0 / 0.25)" }}
+              width={64}
               domain={["auto", "auto"]}
               tickFormatter={(v: number) => fmt(v, 1)}
               label={{
                 value: series.unit,
                 angle: -90,
                 position: "insideLeft",
-                fill: "oklch(0.68 0.03 90)",
-                fontSize: 10,
+                fill: "oklch(0.90 0.02 90)",
+                fontSize: 11,
+                fontFamily: "JetBrains Mono",
+              }}
+            />
+            <YAxis
+              yAxisId="right"
+              orientation="right"
+              tick={{ fill: "oklch(0.90 0.02 90)", fontSize: 11, fontFamily: "JetBrains Mono" }}
+              axisLine={{ stroke: "oklch(1 0 0 / 0.35)" }}
+              tickLine={{ stroke: "oklch(1 0 0 / 0.25)" }}
+              width={64}
+              domain={["auto", "auto"]}
+              tickFormatter={(v: number) => fmt(v, 1)}
+              label={{
+                value: series.unit,
+                angle: 90,
+                position: "insideRight",
+                fill: "oklch(0.90 0.02 90)",
+                fontSize: 11,
                 fontFamily: "JetBrains Mono",
               }}
             />

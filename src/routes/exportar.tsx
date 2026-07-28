@@ -160,18 +160,37 @@ function HistoryChart({
                 }}
               />
               <YAxis
-                stroke="oklch(1 0 0 / 0.25)"
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
-                tickLine={{ stroke: "oklch(1 0 0 / 0.14)" }}
-                fontSize={10}
-                width={56}
+                yAxisId="left"
+                orientation="left"
+                stroke="oklch(1 0 0 / 0.35)"
+                tick={{ fill: "oklch(0.90 0.02 90)", fontSize: 11 }}
+                tickLine={{ stroke: "oklch(1 0 0 / 0.25)" }}
+                fontSize={11}
+                width={64}
                 tickFormatter={(v) => (typeof v === "number" ? v.toFixed(1) : String(v))}
                 label={{
                   value: unit,
                   angle: -90,
                   position: "insideLeft",
-                  fill: "hsl(var(--muted-foreground))",
-                  fontSize: 10,
+                  fill: "oklch(0.90 0.02 90)",
+                  fontSize: 11,
+                }}
+              />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                stroke="oklch(1 0 0 / 0.35)"
+                tick={{ fill: "oklch(0.90 0.02 90)", fontSize: 11 }}
+                tickLine={{ stroke: "oklch(1 0 0 / 0.25)" }}
+                fontSize={11}
+                width={64}
+                tickFormatter={(v) => (typeof v === "number" ? v.toFixed(1) : String(v))}
+                label={{
+                  value: unit,
+                  angle: 90,
+                  position: "insideRight",
+                  fill: "oklch(0.90 0.02 90)",
+                  fontSize: 11,
                 }}
               />
               <Tooltip
@@ -187,6 +206,7 @@ function HistoryChart({
                   key={s.field}
                   type="monotone"
                   dataKey={s.field}
+                  yAxisId="left"
                   name={s.label}
                   stroke={s.color}
                   fill={`url(#g-${title}-${s.field})`}

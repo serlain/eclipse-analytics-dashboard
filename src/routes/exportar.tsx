@@ -427,20 +427,32 @@ function ExportarDatos() {
       )}
 
       <div className="mt-4 grid gap-4">
-        <HistoryChart
-          title="Variables ambientales"
-          data={envData}
-          series={ENV_SERIES}
-          loading={loadingCharts}
-          error={null}
-        />
-        <HistoryChart
-          title="Biopotenciales"
-          data={bioData}
-          series={BIO_SERIES}
-          loading={loadingCharts}
-          error={null}
-        />
+        <div className="text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          Variables ambientales
+        </div>
+        {ENV_SERIES.map((s) => (
+          <HistoryChart
+            key={`env-${s.field}`}
+            title={s.label}
+            data={envData}
+            series={[s]}
+            loading={loadingCharts}
+            error={null}
+          />
+        ))}
+        <div className="mt-4 text-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          Biopotenciales
+        </div>
+        {BIO_SERIES.map((s) => (
+          <HistoryChart
+            key={`bio-${s.field}`}
+            title={s.label}
+            data={bioData}
+            series={[s]}
+            loading={loadingCharts}
+            error={null}
+          />
+        ))}
       </div>
     </PageShell>
   );

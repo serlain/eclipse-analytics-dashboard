@@ -45,15 +45,15 @@ const BIO_JSON =
   "https://api.thingspeak.com/channels/3395551/feeds.json?api_key=GYOL2ONHMGBYOIQJ";
 
 const ENV_SERIES = [
-  { field: "field1", label: "Temperatura (°C)", color: "hsl(12 90% 60%)" },
-  { field: "field2", label: "Humedad (%)", color: "hsl(200 90% 60%)" },
-  { field: "field4", label: "Luminosidad (lx)", color: "hsl(48 95% 60%)" },
+  { field: "field1", label: "Temperatura", unit: "°C", color: "hsl(12 90% 60%)" },
+  { field: "field2", label: "Humedad", unit: "%", color: "hsl(200 90% 60%)" },
+  { field: "field4", label: "Luminosidad", unit: "lx", color: "hsl(48 95% 60%)" },
 ];
 const BIO_SERIES = [
-  { field: "field1", label: "Planta 1 (mV)", color: "hsl(140 70% 55%)" },
-  { field: "field2", label: "Planta 2 (mV)", color: "hsl(160 70% 50%)" },
-  { field: "field3", label: "Referencia (mV)", color: "hsl(280 60% 65%)" },
-  { field: "field4", label: "Humano (mV)", color: "hsl(340 75% 60%)" },
+  { field: "field1", label: "Planta 1", unit: "mV", color: "hsl(140 70% 55%)" },
+  { field: "field2", label: "Planta 2", unit: "mV", color: "hsl(160 70% 50%)" },
+  { field: "field3", label: "Referencia", unit: "mV", color: "hsl(280 60% 65%)" },
+  { field: "field4", label: "Humano", unit: "mV", color: "hsl(340 75% 60%)" },
 ];
 
 type Feed = Record<string, string | null> & { created_at: string };
@@ -115,10 +115,11 @@ function HistoryChart({
 }: {
   title: string;
   data: Array<Record<string, number | string>>;
-  series: { field: string; label: string; color: string }[];
+  series: { field: string; label: string; unit: string; color: string }[];
   loading: boolean;
   error: string | null;
 }) {
+  const unit = series[0]?.unit ?? "";
   return (
     <div className="card-academic rounded-lg p-4 md:p-6">
       <div className="flex items-baseline justify-between">
@@ -133,7 +134,7 @@ function HistoryChart({
       <div className="mt-4 h-72 w-full">
         {data.length > 0 ? (
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
+            <AreaChart data={data} margin={{ top: 8, right: 12, left: 4, bottom: 24 }}>
               <defs>
                 {series.map((s) => (
                   <linearGradient key={s.field} id={`g-${title}-${s.field}`} x1="0" y1="0" x2="0" y2="1">
@@ -148,12 +149,26 @@ function HistoryChart({
                 stroke="hsl(var(--muted-foreground))"
                 fontSize={10}
                 minTickGap={40}
+                label={{
+                  value: "Momento temporal",
+                  position: "insideBottom",
+                  offset: -12,
+                  fill: "hsl(var(--muted-foreground))",
+                  fontSize: 10,
+                }}
               />
               <YAxis
                 stroke="hsl(var(--muted-foreground))"
                 fontSize={10}
                 width={56}
                 tickFormatter={(v) => (typeof v === "number" ? v.toFixed(1) : String(v))}
+                label={{
+                  value: unit,
+                  angle: -90,
+                  position: "insideLeft",
+                  fill: "hsl(var(--muted-foreground))",
+                  fontSize: 10,
+                }}
               />
               <Tooltip
                 contentStyle={{

@@ -45,15 +45,15 @@ const BIO_JSON =
   "https://api.thingspeak.com/channels/3395551/feeds.json?api_key=GYOL2ONHMGBYOIQJ";
 
 const ENV_SERIES = [
-  { field: "field1", label: "Temperatura (°C)", color: "hsl(12 90% 60%)" },
-  { field: "field2", label: "Humedad (%)", color: "hsl(200 90% 60%)" },
-  { field: "field4", label: "Luminosidad (lx)", color: "hsl(48 95% 60%)" },
+  { field: "field1", label: "Temperatura", unit: "°C", color: "hsl(12 90% 60%)" },
+  { field: "field2", label: "Humedad", unit: "%", color: "hsl(200 90% 60%)" },
+  { field: "field4", label: "Luminosidad", unit: "lx", color: "hsl(48 95% 60%)" },
 ];
 const BIO_SERIES = [
-  { field: "field1", label: "Planta 1 (mV)", color: "hsl(140 70% 55%)" },
-  { field: "field2", label: "Planta 2 (mV)", color: "hsl(160 70% 50%)" },
-  { field: "field3", label: "Referencia (mV)", color: "hsl(280 60% 65%)" },
-  { field: "field4", label: "Humano (mV)", color: "hsl(340 75% 60%)" },
+  { field: "field1", label: "Planta 1", unit: "mV", color: "hsl(140 70% 55%)" },
+  { field: "field2", label: "Planta 2", unit: "mV", color: "hsl(160 70% 50%)" },
+  { field: "field3", label: "Referencia", unit: "mV", color: "hsl(280 60% 65%)" },
+  { field: "field4", label: "Humano", unit: "mV", color: "hsl(340 75% 60%)" },
 ];
 
 type Feed = Record<string, string | null> & { created_at: string };

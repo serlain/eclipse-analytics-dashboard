@@ -206,12 +206,12 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
                 <stop offset="100%" stopColor={series.color} stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="oklch(1 0 0 / 0.06)" strokeDasharray="2 4" vertical={false} />
+            <CartesianGrid stroke="oklch(1 0 0 / 0.14)" strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
               tick={{ fill: "oklch(0.68 0.03 90)", fontSize: 10, fontFamily: "JetBrains Mono" }}
-              axisLine={{ stroke: "oklch(1 0 0 / 0.1)" }}
-              tickLine={false}
+              axisLine={{ stroke: "oklch(1 0 0 / 0.25)" }}
+              tickLine={{ stroke: "oklch(1 0 0 / 0.14)" }}
               minTickGap={30}
               label={{
                 value: "Momento temporal",
@@ -224,8 +224,8 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
             />
             <YAxis
               tick={{ fill: "oklch(0.68 0.03 90)", fontSize: 10, fontFamily: "JetBrains Mono" }}
-              axisLine={{ stroke: "oklch(1 0 0 / 0.1)" }}
-              tickLine={false}
+              axisLine={{ stroke: "oklch(1 0 0 / 0.25)" }}
+              tickLine={{ stroke: "oklch(1 0 0 / 0.14)" }}
               width={56}
               domain={["auto", "auto"]}
               tickFormatter={(v: number) => fmt(v, 1)}

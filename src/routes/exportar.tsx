@@ -206,6 +206,7 @@ function HistoryChart({
                   key={s.field}
                   type="monotone"
                   dataKey={s.field}
+                  yAxisId="left"
                   name={s.label}
                   stroke={s.color}
                   fill={`url(#g-${title}-${s.field})`}

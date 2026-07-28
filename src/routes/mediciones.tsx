@@ -274,6 +274,7 @@ function ChartPanel({ series, points }: { series: SeriesDef; points: ReturnType<
             <Area
               type="monotone"
               dataKey="value"
+              yAxisId="left"
               stroke={series.color}
               strokeWidth={1.8}
               fill={`url(#${gradId})`}

@@ -143,10 +143,12 @@ function HistoryChart({
                   </linearGradient>
                 ))}
               </defs>
-              <CartesianGrid stroke="hsl(var(--border))" strokeDasharray="2 4" opacity={0.35} />
+              <CartesianGrid stroke="oklch(1 0 0 / 0.14)" strokeDasharray="3 3" />
               <XAxis
                 dataKey="label"
-                stroke="hsl(var(--muted-foreground))"
+                stroke="oklch(1 0 0 / 0.25)"
+                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
+                tickLine={{ stroke: "oklch(1 0 0 / 0.14)" }}
                 fontSize={10}
                 minTickGap={40}
                 label={{
@@ -158,7 +160,9 @@ function HistoryChart({
                 }}
               />
               <YAxis
-                stroke="hsl(var(--muted-foreground))"
+                stroke="oklch(1 0 0 / 0.25)"
+                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
+                tickLine={{ stroke: "oklch(1 0 0 / 0.14)" }}
                 fontSize={10}
                 width={56}
                 tickFormatter={(v) => (typeof v === "number" ? v.toFixed(1) : String(v))}
